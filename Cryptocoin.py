@@ -21,7 +21,7 @@ class Block:
 	def calculate_hash(self):
 		return sha256(str((self.timestamp, self.transactions, self.previousHash, self.nonce)).encode('utf-8')).hexdigest()
 
-
+    to mine block of each set of transactions 
 	def mine_block(self, difficulty):
 		while self.hash[0:difficulty] != ''.join('0' for i in range(difficulty)):
 			self.nonce += 1
