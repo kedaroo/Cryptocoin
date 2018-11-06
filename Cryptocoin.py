@@ -15,7 +15,11 @@ class Block:
 
     # Human - readable representation of each block
 	def __repr__(self):
-		return f'\n\nTimestamp: {self.timestamp}\nTransactions: {self.transactions}\nPrevious Hash: {self.previousHash}\nHash: {self.hash}\nNonce: {self.nonce}'
+		return f'\n\nTimestamp: {self.timestamp}\n
+                Transactions: {self.transactions}\n
+                Previous Hash: {self.previousHash}\n
+                Hash: {self.hash}\n
+                Nonce: {self.nonce}'
 
     # calculating has for each new block
 	def calculate_hash(self):
