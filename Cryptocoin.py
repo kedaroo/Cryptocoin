@@ -11,7 +11,7 @@ class Block:
 		self.previousHash = previousHash
 		self.timestamp = asctime()
 		self.nonce = 0
-		self.hash = self.calculate_hash()
+		self.hash = self._calculate_hash()
 
     # Human - readable representation of each block
 	def __repr__(self):
@@ -25,7 +25,7 @@ class Block:
 	def _mine_block(self, difficulty):
 		while self.hash[0:difficulty] != ''.join('0' for i in range(difficulty)):
 			self.nonce += 1
-			self.hash = self.calculate_hash()
+			self.hash = self._calculate_hash()
 		return f'BLOCK MINED: {self.hash}'
 
 # Blockchain class
@@ -33,8 +33,8 @@ class Blockchain:
 
     # class constructor
 	def __init__(self):
-		self.chain = [self.create_genesis_block()]
-		self.difficulty = 7
+		self.chain = [self._create_genesis_block()]
+		self.difficulty = 3
 		self.pendingTransactions = []
 		self.miningReward = 100 # mining reward for each block is set to default 100
 
@@ -63,7 +63,7 @@ class Blockchain:
 		self.pendingTransactions.append(rewardTx)
 
 		block = Block(self.pendingTransactions, self.get_latest_block().hash)
-		block.mine_block(self.difficulty)
+		block._mine_block(self.difficulty)
 		# print(f'Block successfully mined!')
 		self.chain.append(block)
 
@@ -78,7 +78,7 @@ class Blockchain:
 			currentBlock = self.chain[i+1]
 			previousBlock = self.chain[i]
 
-			if currentBlock.hash != currentBlock.calculate_hash():
+			if currentBlock.hash != currentBlock._calculate_hash():
 				return false
 
 			if currentBlock.previousHash != previousBlock.hash:
