@@ -21,33 +21,39 @@ class Block:
 	def calculate_hash(self):
 		return sha256(str((self.timestamp, self.transactions, self.previousHash, self.nonce)).encode('utf-8')).hexdigest()
 
-    # to mine block of each set of transactions 
+    # to mine block of each set of transactions
 	def mine_block(self, difficulty):
 		while self.hash[0:difficulty] != ''.join('0' for i in range(difficulty)):
 			self.nonce += 1
 			self.hash = self.calculate_hash()
 		return f'BLOCK MINED: {self.hash}'
 
+# Blockchain class
 class Blockchain:
 
+    # class constructor
 	def __init__(self):
 		self.chain = [self.create_genesis_block()]
 		self.difficulty = 7
 		self.pendingTransactions = []
 		self.miningReward = 100
 
+    # representation of the blockchain
 	def __repr__(self):
 		dbc = ''
 		for i in self.chain:
 			dbc += repr(i)
 		return dbc
 
+    # adds the 1st block of the blockchain
 	def create_genesis_block(self):
 		return Block([], '0')
 
+    # returns latest block in the chain
 	def get_latest_block(self):
 		return self.chain[len(self.chain) - 1]
 
+    # creates transaction
 	def create_transaction(self, transaction):
 		self.pendingTransactions.append(transaction)
 
