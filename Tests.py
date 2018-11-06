@@ -16,7 +16,7 @@ b.mine_pending_transactions('Kevin')
 
 # print()
 
-# let's check balances each one:
+# let's check balances of each one:
 print(b.get_balance('John'))
 print(b.get_balance('Jane'))
 print(b.get_balance('Megan'))
