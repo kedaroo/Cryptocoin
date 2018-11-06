@@ -47,7 +47,7 @@ class Blockchain:
 
     # adds the 1st block of the blockchain
 	def _create_genesis_block(self):
-		return Block(['Genesis Block'], '0')
+		return Block([], '0')
 
     # returns latest block in the chain
 	def get_latest_block(self):
@@ -110,8 +110,9 @@ class Transaction:
 
 	def __repr__(self):
 		return f'From: {self.fromAddress}, To: {self.toAddress}, Amount: {self.amount}'
-
+#
 # b = Blockchain()
 # b.create_transaction(Transaction('kedar', 'kedar2', 200))
+# b.get_balance('kedar2')
 # b.mine_pending_transactions('miner')
 # print(b)

@@ -14,12 +14,14 @@ print(f'Pending transactions: {b.pendingTransactions}')
 # Kevin is our miner
 b.mine_pending_transactions('Kevin')
 
+# print()
+
 # let's check balances each one:
-b.get_balance('John')
-b.get_balance('Jane')
-b.get_balance('Megan')
-b.get_balance('Chris')
-b.get_balance('Kevin')
+print(b.get_balance('John'))
+print(b.get_balance('Jane'))
+print(b.get_balance('Megan'))
+print(b.get_balance('Chris'))
+print(b.get_balance('Kevin'))
 
 # list of pending transactions
 print(f'Pending transactions: {b.pendingTransactions}')
