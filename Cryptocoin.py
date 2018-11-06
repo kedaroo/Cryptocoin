@@ -47,7 +47,7 @@ class Blockchain:
 
     # adds the 1st block of the blockchain
 	def create_genesis_block(self):
-		return Block([], '0')
+		return Block(['Genesis Block'], '0')
 
     # returns latest block in the chain
 	def get_latest_block(self):

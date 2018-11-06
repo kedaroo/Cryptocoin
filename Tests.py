@@ -1,0 +1,1 @@
+from Cryptocoin import *
