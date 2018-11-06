@@ -1,4 +1,4 @@
-# Cryptocoin
+# Cryptocoin 💲💲💲
 
 Python implementation of Savjeecoin
 
