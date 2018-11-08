@@ -31,7 +31,7 @@ class Block:
 # Blockchain class
 class Blockchain:
 
-	difficulty = 2
+	difficulty = 5
 
     # class constructor
 	def __init__(self):
@@ -69,7 +69,7 @@ class Blockchain:
 		self.pendingTransactions.append(rewardTx)
 
 		block = Block(self.pendingTransactions, self.get_latest_block().hash)
-		block._mine_block(cls.difficulty)
+		block._mine_block(Blockchain.difficulty)
 		# print(f'Block successfully mined!')
 		self.chain.append(block)
 
