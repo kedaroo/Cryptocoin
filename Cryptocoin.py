@@ -1,6 +1,10 @@
 # Importing libraries
 from hashlib import sha256 # for hash generation
 from time import asctime, time # for timestamping and benchmarking
+from termcolor import colored
+import colorama
+
+colorama.init()
 
 # Block class
 class Block:
@@ -110,7 +114,10 @@ class Blockchain:
 				if trans.toAddress == address:
 					balance += trans.amount
 
-		return f'{address.upper()} is worth {balance} cryptocoins'
+		colored_address = colored(address.upper(), 'blue')
+		colored_balance = colored(balance, 'green')
+
+		return f'{colored_address} is worth {colored_balance} cryptocoins'
 
 class Transaction:
 

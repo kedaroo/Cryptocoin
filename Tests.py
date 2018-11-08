@@ -5,7 +5,7 @@ b = Blockchain()
 print(f'Blockchain: {b}')
 
 # setting difficulty. By default set to 3
-b.set_difficulty(5)
+# b.set_difficulty(5)
 
 # adding transactions to the blockchain
 b.create_transaction(Transaction('John', 'Jane', 600))
