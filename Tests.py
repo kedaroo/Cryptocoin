@@ -4,17 +4,29 @@ from Cryptocoin import *
 b = Blockchain()
 print(f'Blockchain: {b}')
 
+# setting difficulty. By default set to 3
+b.set_difficulty(5)
+
 # adding transactions to the blockchain
 b.create_transaction(Transaction('John', 'Jane', 600))
+b.mine_pending_transactions('Kevin')
 b.create_transaction(Transaction('John', 'Megan', 700))
-b.create_transaction(Transaction('John', 'Chris', 800)) # because John is rich!
-print(f'Pending transactions: {b.pendingTransactions}')
-
-# there are 3 pending transactions which need to be mined
-# Kevin is our miner
+b.mine_pending_transactions('Jade')
+b.create_transaction(Transaction('John', 'Chris', 800))
+b.mine_pending_transactions('John')
+b.create_transaction(Transaction('John', 'Rock', 1600))
+b.mine_pending_transactions('Megan')
+b.create_transaction(Transaction('Jonas', 'Jane', 15600))
+b.mine_pending_transactions('Kedar')
+b.create_transaction(Transaction('Ricky', 'Jade', 6500))
+b.mine_pending_transactions('Ricky')
+b.create_transaction(Transaction('Johan', 'Jane', 6000))
+b.mine_pending_transactions('Ben')
+b.create_transaction(Transaction('Joquinn', 'Ben', 60120))
 b.mine_pending_transactions('Kevin')
 
-# print()
+# printing chain again
+print(f'Blockchain: {b}')
 
 # let's check balances of each one:
 print(b.get_balance('John'))
@@ -22,26 +34,15 @@ print(b.get_balance('Jane'))
 print(b.get_balance('Megan'))
 print(b.get_balance('Chris'))
 print(b.get_balance('Kevin'))
+print(b.get_balance('Joquinn'))
+print(b.get_balance('Ben'))
+print(b.get_balance('Johan'))
+print(b.get_balance('Jade'))
+print(b.get_balance('Rock'))
+print(b.get_balance('Jonas'))
+print(b.get_balance('Kedar'))
+print(b.get_balance('Ricky'))
 
-# printing chain again
-print(f'Blockchain: {b}')
 
 # list of pending transactions
 print(f'Pending transactions: {b.pendingTransactions}')
-
-# OUTPUT
-
-# Blockchain:
-#
-# Timestamp: Tue Nov  6 22:43:23 2018
-# Transactions: []
-# Previous Hash: 0
-# Hash: cc8eeacd5d2df0d43208792a0d74886ee6e609b2baf03a0c28d7f60c9d18aac3
-# Nonce: 0
-# Pending transactions: [From: John, To: Jane, Amount: 600, From: John, To: Megan, Amount: 700, From: John, To: Chris, Amount: 800]
-# JOHN is worth -2100 cryptocoins
-# JANE is worth 600 cryptocoins
-# MEGAN is worth 700 cryptocoins
-# CHRIS is worth 800 cryptocoins
-# KEVIN is worth 100 cryptocoins
-# Pending transactions: []
