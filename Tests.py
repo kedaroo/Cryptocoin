@@ -23,9 +23,11 @@ print(b.get_balance('Megan'))
 print(b.get_balance('Chris'))
 print(b.get_balance('Kevin'))
 
+# printing chain again
 print(f'Blockchain: {b}')
+
 # list of pending transactions
-# print(f'Pending transactions: {b.pendingTransactions}')
+print(f'Pending transactions: {b.pendingTransactions}')
 
 # OUTPUT
 
