@@ -31,25 +31,31 @@ class Block:
 # Blockchain class
 class Blockchain:
 
+	difficulty = 2
+
     # class constructor
 	def __init__(self):
 		self.chain = [self._create_genesis_block()]
-		self.difficulty = 3
 		self.pendingTransactions = []
 		self.miningReward = 100 # mining reward for each block is set to default 100
 
-    # representation of the blockchain
+	# representation of the blockchain
 	def __repr__(self):
 		dbc = ''
 		for i in self.chain:
 			dbc += repr(i)
 		return dbc
 
+	@classmethod
+	def set_difficulty(cls, difficulty):
+		cls.difficulty = difficulty
+
     # adds the 1st block of the blockchain
 	def _create_genesis_block(self):
 		return Block([], '0')
 
     # returns latest block in the chain
+
 	def get_latest_block(self):
 		return self.chain[len(self.chain) - 1]
 
@@ -63,7 +69,7 @@ class Blockchain:
 		self.pendingTransactions.append(rewardTx)
 
 		block = Block(self.pendingTransactions, self.get_latest_block().hash)
-		block._mine_block(self.difficulty)
+		block._mine_block(cls.difficulty)
 		# print(f'Block successfully mined!')
 		self.chain.append(block)
 
@@ -110,9 +116,3 @@ class Transaction:
 
 	def __repr__(self):
 		return f'From: {self.fromAddress}, To: {self.toAddress}, Amount: {self.amount}'
-#
-# b = Blockchain()
-# b.create_transaction(Transaction('kedar', 'kedar2', 200))
-# b.get_balance('kedar2')
-# b.mine_pending_transactions('miner')
-# print(b)
