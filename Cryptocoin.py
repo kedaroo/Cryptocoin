@@ -1,9 +1,11 @@
 # Importing libraries
 from hashlib import sha256 # for hash generation
-from time import asctime # for timestamping
+from time import asctime, time # for timestamping and benchmarking
 
 # Block class
 class Block:
+
+	time_required = 0
 
     # Class constructor
 	def __init__(self, transactions, previousHash = ''):
@@ -12,10 +14,11 @@ class Block:
 		self.timestamp = asctime()
 		self.nonce = 0
 		self.hash = self._calculate_hash()
+		self.time_required = Block.time_required
 
     # Human - readable representation of each block
 	def __repr__(self):
-		return f'\n\nTimestamp: {self.timestamp}\nTransactions: {self.transactions}\nPrevious Hash: {self.previousHash}\nHash: {self.hash}\nNonce: {self.nonce}'
+		return f'\n\nTimestamp: {self.timestamp} \nTransactions: {self.transactions} \nPrevious Hash: {self.previousHash} \nHash: {self.hash} \nNonce: {self.nonce} \nTime Required: {self.time_required}'
 
     # calculating has for each new block
 	def _calculate_hash(self):
@@ -23,15 +26,18 @@ class Block:
 
     # to mine block of each set of transactions
 	def _mine_block(self, difficulty):
+		start_time = time()
 		while self.hash[0:difficulty] != ''.join('0' for i in range(difficulty)):
 			self.nonce += 1
 			self.hash = self._calculate_hash()
+		end_time = time()
+		Block.time_required = end_time - start_time
 		return f'BLOCK MINED: {self.hash}'
 
 # Blockchain class
 class Blockchain:
 
-	difficulty = 5
+	difficulty = 3
 
     # class constructor
 	def __init__(self):
@@ -70,7 +76,6 @@ class Blockchain:
 
 		block = Block(self.pendingTransactions, self.get_latest_block().hash)
 		block._mine_block(Blockchain.difficulty)
-		# print(f'Block successfully mined!')
 		self.chain.append(block)
 
 		self.pendingTransactions = []
